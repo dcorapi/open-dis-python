@@ -5131,6 +5131,24 @@ class StopFreezePdu( SimulationManagementFamilyPdu ):
 
 
 
+class EntityStatePduVariableParam():
+
+    def __init__(self):
+        self.varParamType = 0
+        self.change = 0
+        self.attachedToID = 0
+        self.paramType = 0
+        self.paramValue = 0
+
+    def parse(self, inputStream):
+        self.varParamType = inputStream.read_unsigned_byte()
+        self.change = inputStream.read_unsigned_byte()
+        self.attachedToID = inputStream.read_unsigned_short()
+        self.paramType = inputStream.read_unsigned_int()
+        self.paramValue = inputStream.read_long()
+
+
+
 class EntityStatePdu( EntityInformationFamilyPdu ):
     """Represents the postion and state of one entity in the world. Section 7.2.2. COMPLETE"""
 
@@ -5202,7 +5220,7 @@ class EntityStatePdu( EntityInformationFamilyPdu ):
         self.marking.parse(inputStream)
         self.capabilities = inputStream.read_unsigned_int();
         for idx in range(0, self.numberOfVariableParameters):
-            element = null()
+            element = EntityStatePduVariableParam()
             element.parse(inputStream)
             self.variableParameters.append(element)
 
