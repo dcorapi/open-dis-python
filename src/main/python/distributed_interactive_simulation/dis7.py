@@ -351,7 +351,7 @@ class DeadReckoningParameters( object ):
         self.deadReckoningAlgorithm = inputStream.read_unsigned_byte();
         self.parameters = [0]*15
         for idx in range(0, 15):
-            val = inputStream.read_unsigned_byte
+            val = inputStream.read_unsigned_byte()
             self.parameters[  idx  ] = val
 
         self.entityLinearAcceleration.parse(inputStream)
@@ -1416,7 +1416,7 @@ class EntityMarking( object ):
         self.characterSet = inputStream.read_unsigned_byte();
         self.characters = [0]*11
         for idx in range(0, 11):
-            val = inputStream.read_byte
+            val = inputStream.read_byte()
             self.characters[  idx  ] = val
 
 
